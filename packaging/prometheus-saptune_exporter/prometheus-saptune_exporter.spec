@@ -15,7 +15,7 @@
 #
 Name:           prometheus-saptune_exporter
 # Version will be processed via set_version source service
-Version:        0.1
+Version:        0.0.1
 Release:        0
 License:        Apache-2.0
 Summary:        Prometheus exporter for saptune metrics

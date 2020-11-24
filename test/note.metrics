@@ -1,0 +1,9 @@
+# HELP saptune_note_enabled This metrics show with 1 all the enabled notes on the system
+# TYPE saptune_note_enabled gauge
+saptune_note_enabled{noteID="1771258"} 1
+saptune_note_enabled{noteID="1980196"} 1
+saptune_note_enabled{noteID="2382421"} 1
+saptune_note_enabled{noteID="2534844"} 1
+saptune_note_enabled{noteID="2578899"} 1
+saptune_note_enabled{noteID="2684254"} 1
+saptune_note_enabled{noteID="941735"} 1

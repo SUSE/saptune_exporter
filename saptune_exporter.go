@@ -8,6 +8,8 @@ import (
 	log "github.com/sirupsen/logrus"
 )
 
+const saptunePath = "/usr/sbin/saptune"
+
 func main() {
 
 	// register various collectors
@@ -26,7 +28,7 @@ func main() {
 		log.Info("Saptune Meta collector registered")
 	}
 
-	noteCollector, err := NewNoteCollector()
+	noteCollector, err := NewNoteCollector(saptunePath)
 	if err != nil {
 		log.Warn(err)
 	} else {

@@ -1,6 +1,8 @@
 package main
 
 import (
+	"os"
+
 	"github.com/pkg/errors"
 	"github.com/prometheus/client_golang/prometheus"
 )
@@ -55,4 +57,21 @@ func (c *DefaultCollector) MakeCounterMetric(name string, value float64, labelVa
 func (c *DefaultCollector) makeMetric(name string, value float64, valueType prometheus.ValueType, labelValues ...string) prometheus.Metric {
 	desc := c.GetDescriptor(name)
 	return prometheus.MustNewConstMetric(desc, valueType, value, labelValues...)
+}
+
+// check that all the given paths exist and are executable files
+func checkExecutables(paths ...string) error {
+	for _, path := range paths {
+		fileInfo, err := os.Stat(path)
+		if err != nil || os.IsNotExist(err) {
+			return errors.Errorf("'%s' does not exist", path)
+		}
+		if fileInfo.IsDir() {
+			return errors.Errorf("'%s' is a directory", path)
+		}
+		if (fileInfo.Mode() & 0111) == 0 {
+			return errors.Errorf("'%s' is not executable", path)
+		}
+	}
+	return nil
 }
