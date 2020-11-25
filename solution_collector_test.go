@@ -7,6 +7,6 @@ import (
 )
 
 func TestSolutionEnabledCollector(t *testing.T) {
-	collector, _ := NewSolutionCollector("test/fake_saptune_solution_enabled.sh")
-	internal.Metrics(t, collector, "solution_enabled.metrics")
+	collector, _ := NewSolutionCollector("test/fake_saptune_solution.sh")
+	internal.Metrics(t, collector, "solution.metrics")
 }
