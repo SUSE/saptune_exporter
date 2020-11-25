@@ -22,8 +22,8 @@ func NewSolutionCollector(saptunePath string) (*SolutionCollector, error) {
 		NewDefaultCollector(subsystem),
 		saptunePath,
 	}
-	c.SetDescriptor("enabled", "show the enabled solution's name. 1 means is enabled. disabled metric is absent ", []string{"solutionName"})
-	c.SetDescriptor("compliant", "show if current solution applied is compliant 1 or not 0", []string{"solutionName"})
+	c.SetDescriptor("enabled", "show the enabled solution's name. 1 means is enabled. disabled metric is absent ", []string{"solution_name"})
+	c.SetDescriptor("compliant", "show if current solution applied is compliant 1 or not 0", []string{"solution_name"})
 	return c, nil
 }
 

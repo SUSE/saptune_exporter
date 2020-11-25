@@ -23,7 +23,7 @@ func NewNoteCollector(saptunePath string) (*NoteCollector, error) {
 		saptunePath,
 	}
 
-	c.SetDescriptor("enabled", "This metrics show with 1 all the enabled notes on the system", []string{"noteID"})
+	c.SetDescriptor("enabled", "This metrics show with 1 all the enabled notes on the system", []string{"note_id"})
 
 	return c, nil
 }
