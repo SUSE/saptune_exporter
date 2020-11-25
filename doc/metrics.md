@@ -35,7 +35,7 @@ Show which Saptune solution is enabled. A value of 1 means solution is enabled, 
 
 ### Description
 
-Show if the given solution is compliant. A value of 1 meains is compliant, 0 not compliant
+Show if the given solution is compliant to saptune standards. A value of 1 meains is compliant, 0 not compliant
 
 #### Labels
 
@@ -50,20 +50,20 @@ Show if the given solution is compliant. A value of 1 meains is compliant, 0 not
 
 ### Description
 
-Show which notes are enabled by ID. The value 1 means is enabled. If metric label  is not present , this means are not enabled.
+Show which notes are enabled by ID. The value 1 means is enabled. If metric label  is not present , this means the SAP notes are not enabled.
 
-### Labels
+### Label
 
 - `note_id`: this indicate the note id of SAP note.
 
 ## Meta
 
 The meta collector collects all "meta" metrics/information about saptune. (version etc.)
+
 0. [Sample](../test/meta.metrics)
 1. [`saptune_meta_version`](#saptune_meta_version)
 
 ### Description
 
 Show the version of saptune. The value is the major version. example `2` means saptune binary is running with 2 as major version.
-
 
