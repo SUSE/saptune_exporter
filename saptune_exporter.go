@@ -9,8 +9,10 @@ import (
 	log "github.com/sirupsen/logrus"
 )
 
-const saptunePath = "/usr/sbin/saptune"
-const saptuneSycConf = "/etc/sysconfig/saptune"
+const (
+	saptunePath    = "/usr/sbin/saptune"
+	saptuneSycConf = "/etc/sysconfig/saptune"
+)
 
 func main() {
 
