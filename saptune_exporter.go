@@ -9,6 +9,7 @@ import (
 )
 
 const saptunePath = "/usr/sbin/saptune"
+const saptuneSycConf = "/etc/sysconfig/saptune"
 
 func main() {
 
@@ -20,7 +21,7 @@ func main() {
 		prometheus.MustRegister(solutionCollector)
 		log.Info("Saptune Solution collector registered")
 	}
-	metaCollector, err := NewMetaCollector()
+	metaCollector, err := NewMetaCollector(saptuneSycConf)
 	if err != nil {
 		log.Warn(err)
 	} else {

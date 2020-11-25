@@ -1,0 +1,3 @@
+# HELP saptune_meta_version Show version of saptune
+# TYPE saptune_meta_version gauge
+saptune_meta_version 2
