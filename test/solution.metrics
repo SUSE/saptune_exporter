@@ -1,0 +1,6 @@
+# HELP saptune_solution_compliant show if current solution applied is compliant 1 or not 0
+# TYPE saptune_solution_compliant gauge
+saptune_solution_compliant{solution_name="HANA"} 1
+# HELP saptune_solution_enabled show the enabled solution's name. 1 means is enabled. disabled metric is absent 
+# TYPE saptune_solution_enabled gauge
+saptune_solution_enabled{solution_name="HANA"} 1
