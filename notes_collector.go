@@ -25,9 +25,9 @@ func getNoteDesc(enabledNoteID string) string {
 	for _, noteID := range tuningOptions.GetSortedIDs() {
 		noteObj := tuningOptions[noteID]
 		if noteID == enabledNoteID {
-			// this is how looks like noteObj.Name, remove the version of the not
+			// this is how looks like noteObj.Name, remove the version.
 			// "Linux: User and system resource limits \n			Version 5 from 18.06.2018 ",
-			solDescRaw := strings.Split(noteObj.Name(), "/n")
+			solDescRaw := strings.Split(noteObj.Name(), "\n")
 			// return only description
 			return solDescRaw[0]
 		}
