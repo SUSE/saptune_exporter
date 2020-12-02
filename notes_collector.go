@@ -71,7 +71,7 @@ func (c *NoteCollector) noteEnabled(ch chan<- prometheus.Metric) {
 	for _, note := range notes {
 		noteDesc := getNoteDesc(note)
 		if noteDesc == "" {
-			log.Warnf("Could not find the note descriptino for given note ID %s", note)
+			log.Warnf("Could not find the note description for given note ID %s", note)
 		}
 		ch <- c.MakeGaugeMetric("enabled", float64(1), note, noteDesc)
 	}
