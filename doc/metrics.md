@@ -55,7 +55,7 @@ Show which notes are enabled by ID. The value 1 means is enabled. If metric labe
 ### Label
 
 - `note_id`: this indicate the note id of SAP note.
-
+- `note_desc`: provide description about the note enabled.
 ## Meta
 
 The meta collector collects all "meta" metrics/information about saptune. (version etc.)
