@@ -4,16 +4,36 @@ import (
 	"os/exec"
 	"strings"
 
+	"github.com/SUSE/saptune/sap/note"
 	"github.com/prometheus/client_golang/prometheus"
 	log "github.com/sirupsen/logrus"
 )
 
 const subsystemNote = "note"
+const noteTuningSheets = "/usr/share/saptune/notes/"
+const extraTuningSheets = "/etc/saptune/extra/"
 
 // NoteCollector is the saptune solution collector
 type NoteCollector struct {
 	DefaultCollector
 	saptunePath string
+}
+
+// Lookup for a given Solution ID enabled the corrisponding Name/Descriptions
+func getNoteDesc(enabledNoteID string) string {
+	tuningOptions := note.GetTuningOptions(noteTuningSheets, extraTuningSheets)
+	for _, noteID := range tuningOptions.GetSortedIDs() {
+		noteObj := tuningOptions[noteID]
+		if noteID == enabledNoteID {
+			// this is how looks like noteObj.Name, remove the version of the not
+			// "Linux: User and system resource limits \n			Version 5 from 18.06.2018 ",
+			solDescRaw := strings.Split(noteObj.Name(), "/n")
+			// return only description
+			return solDescRaw[0]
+		}
+	}
+	// in case there is no match return empty string
+	return ""
 }
 
 // NewNoteCollector creates a new solution saptune collector
@@ -23,7 +43,7 @@ func NewNoteCollector(saptunePath string) (*NoteCollector, error) {
 		saptunePath,
 	}
 
-	c.SetDescriptor("enabled", "This metrics show with 1 all the enabled notes on the system", []string{"note_id"})
+	c.SetDescriptor("enabled", "This metrics show with 1 all the enabled notes on the system", []string{"note_id", "note_desc"})
 
 	return c, nil
 }
@@ -49,6 +69,10 @@ func (c *NoteCollector) noteEnabled(ch chan<- prometheus.Metric) {
 	notes := strings.Fields(string(noteList))
 
 	for _, note := range notes {
-		ch <- c.MakeGaugeMetric("enabled", float64(1), note)
+		noteDesc := getNoteDesc(note)
+		if noteDesc == "" {
+			log.Warnf("Could not find the note descriptino for given note ID %s", note)
+		}
+		ch <- c.MakeGaugeMetric("enabled", float64(1), note, noteDesc)
 	}
 }
